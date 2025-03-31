@@ -1,0 +1,9 @@
+package dev.Zerphyis.library.Repository;
+
+import dev.Zerphyis.library.Entity.Author.Author;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+}
