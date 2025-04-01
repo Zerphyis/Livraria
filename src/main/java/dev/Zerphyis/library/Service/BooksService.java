@@ -29,7 +29,6 @@ public class BooksService {
 
         newBook = repository.save(newBook);
 
-        // Retorna a resposta com os dados simplificados
         return new DataBooksExit(
                 newBook.getTitle(),
                 newBook.getAuthor().getName(),
