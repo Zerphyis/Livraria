@@ -17,7 +17,7 @@ public class AuthorController {
     private AuthoresService service;
 
     @PostMapping
-    public ResponseEntity<Author> register(DataAuthor data) {
+    public ResponseEntity<Author> register(@RequestBody  DataAuthor data) {
         Author author = service.registerAuthor(data);
         return ResponseEntity.ok(author);
     }
@@ -35,7 +35,7 @@ public class AuthorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Author> uptade(@PathVariable("id") Long id, DataAuthor data) {
+    public ResponseEntity<Author> uptade(@PathVariable("id") Long id,@RequestBody DataAuthor data) {
         Optional<Author> updatedAuthor = service.updateAuthor(id, data);
         return updatedAuthor.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
