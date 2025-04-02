@@ -1,8 +1,7 @@
 package dev.Zerphyis.library.Controller;
 
-import dev.Zerphyis.library.Entity.Books.Books;
-import dev.Zerphyis.library.Entity.Datas.DataBooksEntry;
-import dev.Zerphyis.library.Entity.Datas.DataBooksExit;
+import dev.Zerphyis.library.Entity.Datas.Books.DataBooksEntry;
+import dev.Zerphyis.library.Entity.Datas.Books.DataBooksExit;
 import dev.Zerphyis.library.Service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
