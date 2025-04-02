@@ -1,7 +1,6 @@
 package dev.Zerphyis.library.Entity.Books;
 
 import dev.Zerphyis.library.Entity.Author.Author;
-import dev.Zerphyis.library.Entity.Datas.DataBooksEntry;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -41,6 +40,16 @@ public class Books {
         this.gender = gender;
         this.quantityAvailable = quantityAvailable;
         this.author = author;
+    }
+
+    public Books(Long id, String title, Author author, LocalDate publicationDate, String publisher, String gender, Integer quantityAvailable) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publicationDate = publicationDate;
+        this.publisher = publisher;
+        this.gender = gender;
+        this.quantityAvailable = quantityAvailable;
     }
 
 
