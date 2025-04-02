@@ -1,14 +1,9 @@
 package dev.Zerphyis.library.Entity.User;
 
 import dev.Zerphyis.library.Entity.Datas.DataUsers;
-import dev.Zerphyis.library.Entity.Loan.Loan;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-
-import java.util.List;
-
 @Table(name = "usuarios")
 @Entity
 public class Users {
@@ -22,10 +17,6 @@ public class Users {
     private String email;
     @NotBlank
     private String phone;
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "emprestimos_id")
-    private List<Loan> loansActive;
 
     public Users(){
 
@@ -59,13 +50,5 @@ public class Users {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public List<Loan> getLoansActive() {
-        return loansActive;
-    }
-
-    public void setLoansActive(List<Loan> loansActive) {
-        this.loansActive = loansActive;
     }
 }
