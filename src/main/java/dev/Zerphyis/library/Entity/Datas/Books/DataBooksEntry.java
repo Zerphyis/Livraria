@@ -1,4 +1,4 @@
-package dev.Zerphyis.library.Entity.Datas;
+package dev.Zerphyis.library.Entity.Datas.Books;
 
 
 
