@@ -27,6 +27,12 @@ public class Author {
         this.nationality= data.nationality();
         this.dateBirth=data.dateBirth();
     }
+    public Author(Long id, String name, String nationality, LocalDate dateBirth) {
+        this.id = id;
+        this.name = name;
+        this.nationality = nationality;
+        this.dateBirth = dateBirth;
+    }
 
     public Long getId() {
         return id;
