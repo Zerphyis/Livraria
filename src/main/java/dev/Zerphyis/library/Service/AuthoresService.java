@@ -2,6 +2,7 @@ package dev.Zerphyis.library.Service;
 
 import dev.Zerphyis.library.Entity.Author.Author;
 import dev.Zerphyis.library.Entity.Datas.DataAuthor;
+import dev.Zerphyis.library.Exeception.AuthorNotFoundExeception;
 import dev.Zerphyis.library.Repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,10 +26,16 @@ public class AuthoresService {
     }
 
     public Optional<Author> getAuthorById(Long id) {
+        if (!repository.existsById(id)) {
+            throw new AuthorNotFoundExeception("Autor com ID " + id + " não encontrado.");
+        }
         return repository.findById(id);
     }
 
     public Optional<Author> updateAuthor(Long id, DataAuthor data) {
+        if (!repository.existsById(id)) {
+            throw new AuthorNotFoundExeception("Autor com ID " + id + " não encontrado.");
+        }
         return repository.findById(id).map(author -> {
             author.setName(data.name());
             author.setNationality(data.nationality());
@@ -39,7 +46,7 @@ public class AuthoresService {
 
     public void deleteAuthor(Long id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Autor com ID " + id + " não encontrado.");
+            throw new AuthorNotFoundExeception("Autor com ID " + id + " não encontrado.");
         }
         repository.deleteById(id);
     }
