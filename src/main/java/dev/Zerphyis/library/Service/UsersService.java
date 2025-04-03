@@ -4,7 +4,6 @@ import dev.Zerphyis.library.Entity.Datas.DataUsers;
 import dev.Zerphyis.library.Entity.User.Users;
 import dev.Zerphyis.library.Exeception.UserNotFoundExeception;
 import dev.Zerphyis.library.Repository.UsersRepository;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
