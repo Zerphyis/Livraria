@@ -4,6 +4,8 @@ import dev.Zerphyis.library.Entity.Author.Author;
 import dev.Zerphyis.library.Entity.Books.Books;
 import dev.Zerphyis.library.Entity.Datas.Books.DataBooksEntry;
 import dev.Zerphyis.library.Entity.Datas.Books.DataBooksExit;
+import dev.Zerphyis.library.Exeception.AuthorNotFoundExeception;
+import dev.Zerphyis.library.Exeception.BooksNotFoundExeception;
 import dev.Zerphyis.library.Repository.AuthorRepository;
 import dev.Zerphyis.library.Repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,7 @@ public class BooksService {
 
     public DataBooksExit registerBook(DataBooksEntry data) {
         Author author = authorRepository.findById(data.authorId())
-                .orElseThrow(() -> new RuntimeException("Autor não encontrado"));
+                .orElseThrow(() -> new AuthorNotFoundExeception("Autor não encontrado"));
 
         Books newBook = new Books(data.title(), data.publicationDate(), data.publisher(), data.gender(), data.quantityAvailable(),author);
 
@@ -64,28 +66,31 @@ public class BooksService {
     }
 
     public Optional<DataBooksExit> updateBook(Long id, DataBooksEntry data) {
-        return repository.findById(id).map(book -> {
-            book.setTitle(data.title());
-            book.setAuthor(authorRepository.findById(data.authorId()).orElseThrow(() -> new RuntimeException("Autor não encontrado")));
-            book.setPublicationDate(data.publicationDate());
-            book.setPublisher(data.publisher());
-            book.setGender(data.gender());
-            book.setQuantityAvailable(data.quantityAvailable());
-            repository.save(book);
-            return new DataBooksExit(
-                    book.getTitle(),
-                    book.getAuthor().getName(),
-                    book.getPublicationDate(),
-                    book.getPublisher(),
-                    book.getGender(),
-                    book.getQuantityAvailable()
-            );
-        });
+        Books book = repository.findById(id)
+                .orElseThrow(() -> new BooksNotFoundExeception("Livro com ID " + id + " não encontrado."));
+
+        book.setTitle(data.title());
+        book.setAuthor(authorRepository.findById(data.authorId())
+                .orElseThrow(() -> new AuthorNotFoundExeception("Autor não encontrado")));
+        book.setPublicationDate(data.publicationDate());
+        book.setPublisher(data.publisher());
+        book.setGender(data.gender());
+        book.setQuantityAvailable(data.quantityAvailable());
+        repository.save(book);
+
+        return Optional.of(new DataBooksExit(
+                book.getTitle(),
+                book.getAuthor().getName(),
+                book.getPublicationDate(),
+                book.getPublisher(),
+                book.getGender(),
+                book.getQuantityAvailable()
+        ));
     }
 
     public void deleteBook(Long id) {
         if (!repository.existsById(id)) {
-            throw new RuntimeException("Livro com ID " + id + " não encontrado.");
+            throw new BooksNotFoundExeception("Livro com ID " + id + " não encontrado.");
         }
         repository.deleteById(id);
     }
