@@ -59,22 +59,26 @@ class LoanServiceTest {
         Loan createdLoan = loanService.createLoan(dataLoanEntry);
 
         assertNotNull(createdLoan);
-        assertEquals(book.getTitle(), createdLoan.getBook().getTitle());
-        assertEquals(user.getName(), createdLoan.getUsers().getName());
+        assertEquals("Clean Code", createdLoan.getBook().getTitle());
+        assertEquals("John Doe", createdLoan.getUsers().getName());
+        assertEquals(4, book.getQuantityAvailable(), "A quantidade disponível do livro deve ser reduzida");
     }
 
     @Test
     void testReturnBook() {
+        LocalDate returnDate = LocalDate.now().plusDays(10);
+        loan.setExpectedReturnDate(LocalDate.now().plusDays(5));
         when(loanRepository.findById(1L)).thenReturn(Optional.of(loan));
         when(booksRepository.save(any(Books.class))).thenReturn(book);
         when(loanRepository.save(any(Loan.class))).thenReturn(loan);
 
-        DataLoanExit dataLoanExit = loanService.returnBook(1L, LocalDate.now().plusDays(10));
+        DataLoanExit dataLoanExit = loanService.returnBook(1L, returnDate);
 
         assertNotNull(dataLoanExit);
-        assertEquals(book.getTitle(), dataLoanExit.nameBook());
-        assertEquals(user.getName(), dataLoanExit.userName());
+        assertEquals("Clean Code", dataLoanExit.nameBook());
+        assertEquals("John Doe", dataLoanExit.userName());
+        assertEquals(returnDate, dataLoanExit.ActualReturnDate());
         assertNotNull(dataLoanExit.fine(), "A multa não deve ser null");
-        assertTrue(dataLoanExit.fine().compareTo(BigDecimal.ZERO) >= 0);
+        assertTrue(dataLoanExit.fine().compareTo(BigDecimal.ZERO) > 0, "A multa deve ser maior que zero para devoluções atrasadas");
     }
 }
