@@ -5,6 +5,9 @@ import dev.Zerphyis.library.Entity.Datas.DataLoanEntry;
 import dev.Zerphyis.library.Entity.Datas.DataLoanExit;
 import dev.Zerphyis.library.Entity.Loan.Loan;
 import dev.Zerphyis.library.Entity.User.Users;
+import dev.Zerphyis.library.Exeception.BooksNotFoundExeception;
+import dev.Zerphyis.library.Exeception.LoanNotFoundExecption;
+import dev.Zerphyis.library.Exeception.UserNotFoundExeception;
 import dev.Zerphyis.library.Repository.BooksRepository;
 import dev.Zerphyis.library.Repository.LoanRepository;
 import dev.Zerphyis.library.Repository.UsersRepository;
@@ -30,14 +33,14 @@ public class LoanService {
     @Transactional
     public Loan createLoan(DataLoanEntry dataLoanEntry) {
         Books book = booksRepository.findById(dataLoanEntry.bookId())
-                .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+                .orElseThrow(() -> new BooksNotFoundExeception("Livro não encontrado"));
 
         if (book.getQuantityAvailable() <= 0) {
-            throw new RuntimeException("Livro indisponível para empréstimo");
+            throw new BooksNotFoundExeception("Livro indisponível para empréstimo");
         }
 
         Users user = usersRepository.findById(dataLoanEntry.userId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new UserNotFoundExeception("Usuário não encontrado"));
 
         book.setQuantityAvailable(book.getQuantityAvailable() - 1);
         booksRepository.save(book);
@@ -49,7 +52,7 @@ public class LoanService {
     @Transactional
     public DataLoanExit returnBook(Long loanId, LocalDate returnDate) {
         Loan loan = loanRepository.findById(loanId)
-                .orElseThrow(() -> new RuntimeException("Empréstimo não encontrado"));
+                .orElseThrow(() -> new LoanNotFoundExecption("Empréstimo não encontrado"));
 
         long overdueDays = ChronoUnit.DAYS.between(loan.getExpectedReturnDate(), returnDate);
         loan.setActualReturnDate(returnDate);
@@ -89,7 +92,7 @@ public class LoanService {
     @Transactional
     public String deleteLoan(Long loanId) {
         if (!loanRepository.existsById(loanId)) {
-            throw new RuntimeException("Empréstimo não encontrado");
+            throw new LoanNotFoundExecption("Empréstimo não encontrado");
         }
         loanRepository.deleteById(loanId);
         return "Empréstimo deletado com sucesso.";
