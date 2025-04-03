@@ -11,20 +11,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.awt.print.Book;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.mockito.Mockito.doNothing;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -34,6 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 @SpringBootTest
 @AutoConfigureMockMvc
+
 class LoanControllerTest {
 
 
@@ -108,10 +106,11 @@ class LoanControllerTest {
     public void testDeleteLoan() throws Exception {
         Long loanId = 1L;
 
-        doNothing().when(loanService).deleteLoan(loanId);
+        when(loanService.deleteLoan(loanId)).thenReturn("Empréstimo deletado com sucesso");
 
         mockMvc.perform(delete("/emprestimos/{id}", loanId))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message").value("Empréstimo deletado com sucesso"));
+                .andExpect((result) ->
+                        assertEquals("Empréstimo deletado com sucesso", result.getResponse().getContentAsString()));
     }
 }
