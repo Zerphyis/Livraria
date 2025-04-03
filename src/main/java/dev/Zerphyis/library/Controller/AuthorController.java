@@ -2,8 +2,10 @@ package dev.Zerphyis.library.Controller;
 
 import dev.Zerphyis.library.Entity.Author.Author;
 import dev.Zerphyis.library.Entity.Datas.DataAuthor;
+import dev.Zerphyis.library.Exeception.AuthorNotFoundExeception;
 import dev.Zerphyis.library.Service.AuthoresService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +46,12 @@ public class AuthorController {
     public ResponseEntity<Author> delete(@PathVariable("id") Long id) {
         service.deleteAuthor(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @ExceptionHandler(AuthorNotFoundExeception.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleAuthorNotFoundException(AuthorNotFoundExeception ex) {
+        return ex.getMessage();
     }
 }
 
