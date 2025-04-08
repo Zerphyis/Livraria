@@ -45,8 +45,27 @@ O projeto segue uma arquitetura dividida em pacotes organizados por responsabili
 
 - `DELETE /autores/{id}`: Remover um autor.  
 ![Image](https://github.com/user-attachments/assets/1b9651af-e399-4289-b2c4-31df4554149f)
+---
+
+### Livros (`/livros`)
+
+- `POST /livros`: Cadastrar um novo livro.  
+![Image](https://github.com/user-attachments/assets/6a56469e-d659-40c7-b3da-90511005e0f1)
+
+- `GET /livros`: Listar todos os livros disponíveis.  
+  ![Image](https://github.com/user-attachments/assets/287a3677-9cb7-4220-b189-8684fe36ac08)
+
+- `GET /livros/{id}`: Obter detalhes de um livro específico.  
+ ![Image](https://github.com/user-attachments/assets/ec98d07b-2af6-4cc4-a23e-79fd150dbf54)
+
+- `PUT /livros/{id}`: Atualizar as informações de um livro.  
+ ![Image](https://github.com/user-attachments/assets/cc10f822-782a-46cc-b3b9-99818c3ce1ed)
+
+- `DELETE /livros/{id}`: Deletar um livro do sistema.  
+![Image](https://github.com/user-attachments/assets/17f088ab-4ebb-4fb8-8e1f-ed7fc5ee44db)
 
 ---
+
 
 
 ## 🧪 Testes
