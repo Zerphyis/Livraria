@@ -65,6 +65,25 @@ O projeto segue uma arquitetura dividida em pacotes organizados por responsabili
 ![Image](https://github.com/user-attachments/assets/17f088ab-4ebb-4fb8-8e1f-ed7fc5ee44db)
 
 ---
+###  Usuários (`/usuarios`)
+
+- `POST /usuarios`: Registrar um novo usuário.  
+![Image](https://github.com/user-attachments/assets/5fa7f235-7c83-48b5-a0d8-16967fffe151)
+
+- `GET /usuarios`: Listar todos os usuários.  
+![Image](https://github.com/user-attachments/assets/ea614aeb-0f53-4ff5-9edf-51b80194c2e7)
+
+- `GET /usuarios/{id}`: Buscar um usuário pelo ID.  
+![Image](https://github.com/user-attachments/assets/2fa1411d-e981-485f-a30b-48b7dfcec40e)
+
+- `PUT /usuarios/{id}`: Atualizar dados de um usuário existente.  
+![Image](https://github.com/user-attachments/assets/8253a16d-f05f-4e74-9644-413807bea8a6)
+
+- `DELETE /usuarios/{id}`: Remover um usuário do sistema.  
+![Image](https://github.com/user-attachments/assets/67c12fc6-93b8-4bc3-8697-9eaaa1ce0cdf)
+
+---
+
 
 
 
