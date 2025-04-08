@@ -83,9 +83,19 @@ O projeto segue uma arquitetura dividida em pacotes organizados por responsabili
 ![Image](https://github.com/user-attachments/assets/67c12fc6-93b8-4bc3-8697-9eaaa1ce0cdf)
 
 ---
+###  Empréstimos (`/emprestimos`)
 
+- `POST /emprestimos`: Criar um novo empréstimo de livro.  
+  ![Image](https://github.com/user-attachments/assets/7ff428af-2966-4c5f-9ef3-dd8c6d3479ce)
 
+- `GET /emprestimos`: Listar todos os empréstimos.  
+![Image](https://github.com/user-attachments/assets/cc6d9a99-0152-4bf1-9a83-dc9e6e043076)
 
+- `PUT /emprestimos/{id}?returnDate=YYYY-MM-DD`: Realizar devolução de um livro.  
+![Image](https://github.com/user-attachments/assets/c829f4ce-6f94-4e2a-90af-1969c8c24564)
+
+- `DELETE /emprestimos/{id}`: Remover um empréstimo do sistema.  
+![Image](https://github.com/user-attachments/assets/0e62806d-d5aa-4d94-8b62-ae88f13c6d60)
 
 ## 🧪 Testes
 
