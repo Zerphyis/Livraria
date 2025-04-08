@@ -27,45 +27,27 @@ O projeto segue uma arquitetura dividida em pacotes organizados por responsabili
 - `Datas`: classes DTO para entrada e saída de dados.
 
 ---
+## 📌 Endpoints da API
 
-## 📌 Endpoints Disponíveis
+###  Autores (`/autores`)
 
-### 🔹 Autores (`/autores`)
-| Método | Endpoint       | Descrição                     |
-|--------|----------------|-------------------------------|
-| POST   | `/`            | Cadastrar novo autor          |
-| GET    | `/`            | Listar todos os autores       |
-| GET    | `/{id}`        | Buscar autor por ID           |
-| PUT    | `/{id}`        | Atualizar dados do autor      |
-| DELETE | `/{id}`        | Deletar autor                 |
+- `POST /autores`: Adicionar um novo autor.  
+ ![Image](https://github.com/user-attachments/assets/1c64e39e-ee6c-4ca6-baaa-55ab3f725278)
 
-### 🔹 Usuários (`/usuarios`)
-| Método | Endpoint       | Descrição                     |
-|--------|----------------|-------------------------------|
-| POST   | `/`            | Cadastrar novo usuário        |
-| GET    | `/`            | Listar todos os usuários      |
-| GET    | `/{id}`        | Buscar usuário por ID         |
-| PUT    | `/{id}`        | Atualizar dados do usuário    |
-| DELETE | `/{id}`        | Deletar usuário               |
+- `GET /autores`: Listar todos os autores cadastrados.  
+![Image](https://github.com/user-attachments/assets/6671a193-0ee4-4ef3-a971-8ac3869f7b36)
 
-### 🔹 Livros (`/livros`)
-| Método | Endpoint       | Descrição                     |
-|--------|----------------|-------------------------------|
-| POST   | `/`            | Cadastrar novo livro          |
-| GET    | `/`            | Listar todos os livros        |
-| GET    | `/{id}`        | Buscar livro por ID           |
-| PUT    | `/{id}`        | Atualizar dados do livro      |
-| DELETE | `/{id}`        | Deletar livro                 |
+- `GET /autores/{id}`: Visualizar detalhes de um autor.  
+![Image](https://github.com/user-attachments/assets/80b99204-44f9-45fc-9074-2f2875ee549f)
 
-### 🔹 Empréstimos (`/emprestimos`)
-| Método | Endpoint                    | Descrição                                |
-|--------|-----------------------------|------------------------------------------|
-| POST   | `/`                         | Criar um novo empréstimo de livro        |
-| PUT    | `/{id}?returnDate=YYYY-MM-DD` | Realizar devolução do livro              |
-| GET    | `/`                         | Listar todos os empréstimos              |
-| DELETE | `/{id}`                     | Deletar um empréstimo                    |
+- `PUT /autores/{id}`: Editar as informações de um autor.  
+![Image](https://github.com/user-attachments/assets/6b4c0a36-6af5-4525-87db-d992a4a03f11)
+
+- `DELETE /autores/{id}`: Remover um autor.  
+![Image](https://github.com/user-attachments/assets/1b9651af-e399-4289-b2c4-31df4554149f)
 
 ---
+
 
 ## 🧪 Testes
 
